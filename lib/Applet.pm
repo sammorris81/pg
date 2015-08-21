@@ -693,7 +693,9 @@ use constant DEFAULT_HEADER_TEXT =><<'END_HEADER_SCRIPT';
 	 	  if (obj ) {   //RECENT FIX to ==
 	 		  return( obj );
 	 	  } else {
-	 		  alert ("can't find applet " + appletName);		  
+		      // Commented out because if the applet is in a hint
+		      // this might be run with no applet
+		      // alert ("can't find applet " + appletName);		  
 	 	  }
 	  }	
 		
@@ -745,7 +747,7 @@ sub insertObject {
     my $javaParameters = '';
     my $flashParameters = '';
     my $webgeogebraParameters = '';
-    if (PGcore::not_null($self->{parameter_string}) ) {
+    if (PGUtil::not_null($self->{parameter_string}) ) {
     	$javaParameters = $self->{parameter_string};
     	$flashParameters = $self->{parameter_string};
     	$webgeogebraParameters = $self->{parameter_string};
@@ -988,7 +990,7 @@ http://www.teratechnologies.net/stevekamerman/index.php?m=01&y=07&entry=entry070
 use constant CANVAS_OBJECT_TEXT =><<'END_OBJECT_TEXT';
   <form></form>
 	<script> var width = 200; var height = 200;</script>
-	<canvas name="cv" id="cv" data-src="http://localhost/webwork2_files/js/sketchgraphhtml5b/SketchGraph.pjs" width="400" height="400"></canvas>  
+	<canvas name="cv" id="cv" data-src="http://localhost/webwork2_files/js/legacy/sketchgraphhtml5b/SketchGraph.pjs" width="400" height="400"></canvas>  
 END_OBJECT_TEXT
 
 
@@ -1055,7 +1057,7 @@ END_HEADER_SCRIPT
 use constant CANVAS_OBJECT_TEXT =><<'END_OBJECT_TEXT';
     <script language="javascript">ww_applet_list["$appletName"].visible = 1; // don't submit things if not visible
     </script>
-	<canvas name="cv" id="cv" data-src="/webwork2_files/js/sketchgraphhtml5b/SketchGraph.pjs" width="$width" height="$height"></canvas>  
+	<canvas name="cv" id="cv" data-src="/webwork2_files/js/legacy/sketchgraphhtml5b/SketchGraph.pjs" width="$width" height="$height"></canvas>  
 END_OBJECT_TEXT
 
 sub new {
@@ -1086,7 +1088,7 @@ package GeogebraWebApplet;
 use constant CANVAS_OBJECT_TEXT =><<'END_OBJECT_TEXT';
   <form></form>
 	<script> var width = 200; var height = 200;</script>
-	<canvas name="cv" id="cv" data-src="http://localhost/webwork2_files/js/sketchgraphhtml5b/SketchGraph.pjs" width="400" height="400"></canvas>  
+	<canvas name="cv" id="cv" data-src="http://localhost/webwork2_files/js/legacy/sketchgraphhtml5b/SketchGraph.pjs" width="400" height="400"></canvas>  
 END_OBJECT_TEXT
 
 
@@ -1146,7 +1148,7 @@ END_HEADER_SCRIPT
 use constant GEOGEBRAWEB_OBJECT_TEXT =><<'END_OBJECT_TEXT';
     <script language="javascript">ww_applet_list["$appletName"].visible = 1; // don't submit things if not visible
     </script>
-<script type="text/javascript" language="javascript" src="https://www.geogebra.org/web/4.4/web/web.nocache.js"></script>
+<script type="text/javascript" language="javascript" src="//web.geogebra.org/4.4/web/web.nocache.js"></script>
 
 $webgeogebraParameters
 
